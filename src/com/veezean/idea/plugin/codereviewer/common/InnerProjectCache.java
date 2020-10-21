@@ -100,6 +100,7 @@ public class InnerProjectCache {
         // 只更新允许编辑的字段内容
         ReviewCommentInfoModel model = comments.get(commentInfo.getIdentifier());
         model.setReviewer(commentInfo.getReviewer());
+        model.setCodeAuthor(commentInfo.getCodeAuthor());
         model.setComments(commentInfo.getComments());
         model.setType(commentInfo.getType());
         model.setSeverity(commentInfo.getSeverity());

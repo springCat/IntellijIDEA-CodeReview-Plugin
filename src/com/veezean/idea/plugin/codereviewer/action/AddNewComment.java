@@ -35,8 +35,8 @@ public class AddNewComment extends AnAction {
         }
 
         Document document = data.getDocument();
-        int startLine = document.getLineNumber(selectionModel.getSelectionStart()) + 1;
-        int endLine = document.getLineNumber(selectionModel.getSelectionEnd()) + 1;
+        int startLine = document.getLineNumber(selectionModel.getSelectionStart());
+        int endLine = document.getLineNumber(selectionModel.getSelectionEnd());
 
 
         ReviewCommentInfoModel model = new ReviewCommentInfoModel();
@@ -63,6 +63,7 @@ public class AddNewComment extends AnAction {
             model.setType(lastCommentModel.getType());
             model.setSeverity(lastCommentModel.getSeverity());
             model.setFactor(lastCommentModel.getFactor());
+            model.setCodeAuthor(lastCommentModel.getCodeAuthor());
         }
 
 

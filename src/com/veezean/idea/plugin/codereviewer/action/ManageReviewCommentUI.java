@@ -34,7 +34,7 @@ import java.util.List;
  * @since 2019/9/29
  */
 public class ManageReviewCommentUI {
-    private static final Object[] COLUMN_NAMES = {"ID", "Reviewer", "Comments", "Type",
+    private static final Object[] COLUMN_NAMES = {"ID", "Reviewer", "codeAuthor","Comments", "Type",
             "Severity", "TriggerFactor", "File", "Line", "CodeFragment", "Time"};
     private JButton clearButton;
     private JButton deleteButton;
@@ -64,7 +64,7 @@ public class ManageReviewCommentUI {
         List<ReviewCommentInfoModel> cachedComments = projectCache.getCachedComments();
         List<Object[]> rowDataList = new ArrayList<>();
         for (ReviewCommentInfoModel model : cachedComments) {
-            Object[] row = {model.getIdentifier(), model.getReviewer(), model.getComments(), model.getType(),
+            Object[] row = {model.getIdentifier(), model.getReviewer(),model.getCodeAuthor(), model.getComments(), model.getType(),
                     model.getSeverity(), model.getFactor(), model.getFilePath(), model.getLineRange(), model.getContent(),
                     model.getDateTime()
             };
@@ -102,13 +102,15 @@ public class ManageReviewCommentUI {
                 int row = e.getFirstRow();
                 Long identifier = (Long) commentTable.getValueAt(row, 0);
                 String reviewer = (String) commentTable.getValueAt(row, 1);
-                String comments = (String) commentTable.getValueAt(row, 2);
-                String type = (String) commentTable.getValueAt(row, 3);
-                String severity = (String) commentTable.getValueAt(row, 4);
-                String factor = (String) commentTable.getValueAt(row, 5);
+                String codeAuthor = (String) commentTable.getValueAt(row, 2);
+                String comments = (String) commentTable.getValueAt(row, 3);
+                String type = (String) commentTable.getValueAt(row, 4);
+                String severity = (String) commentTable.getValueAt(row, 5);
+                String factor = (String) commentTable.getValueAt(row, 6);
                 ReviewCommentInfoModel model = new ReviewCommentInfoModel();
                 model.setIdentifier(identifier);
                 model.setReviewer(reviewer);
+                model.setCodeAuthor(codeAuthor);
                 model.setComments(comments);
                 model.setType(type);
                 model.setSeverity(severity);
@@ -142,8 +144,8 @@ public class ManageReviewCommentUI {
     }
 
     private void doubleClickDumpToOriginal(Project project, int row, int column) {
-        String filePath = (String) commentTable.getValueAt(row, 6);
-        String line = (String) commentTable.getValueAt(row, 7);
+        String filePath = (String) commentTable.getValueAt(row, 7);
+        String line = (String) commentTable.getValueAt(row, 8);
         int startLine = 0;
         try {
             if (filePath == null || line == null) {

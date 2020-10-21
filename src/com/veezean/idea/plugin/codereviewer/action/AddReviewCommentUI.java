@@ -31,12 +31,14 @@ public class AddReviewCommentUI {
     private JTextField filePathTextField;
     private JTextArea codeContentsTextArea;
     private JTextField lineTextField;
+    private JTextField codeAuthorTextField;
 
     public static void showDialog(ReviewCommentInfoModel model, Project project) {
         JDialog dialog = new JDialog();
         dialog.setTitle("添加评审意见");
         AddReviewCommentUI reviewCommentUI = new AddReviewCommentUI();
         reviewCommentUI.reviewerTextField.setText(model.getReviewer());
+        reviewCommentUI.codeAuthorTextField.setText(model.getCodeAuthor());
         reviewCommentUI.commentsTextArea.setText(model.getComments());
         reviewCommentUI.codeContentsTextArea.setText(model.getContent());
         reviewCommentUI.filePathTextField.setText(model.getFilePath());
@@ -49,10 +51,10 @@ public class AddReviewCommentUI {
             model.setContent(reviewCommentUI.codeContentsTextArea.getText());
             model.setComments(reviewCommentUI.commentsTextArea.getText());
             model.setReviewer(reviewCommentUI.reviewerTextField.getText());
+            model.setCodeAuthor(reviewCommentUI.codeAuthorTextField.getText());
             model.setType(reviewCommentUI.questionTypeComboBox.getSelectedItem().toString());
             model.setSeverity(reviewCommentUI.severityComboBox.getSelectedItem().toString());
             model.setFactor(reviewCommentUI.triggerFactorComboBox.getSelectedItem().toString());
-
             System.out.println(model);
 
             InnerProjectCache projectCache = ProjectInstanceManager.getInstance().getProjectCache(project.getLocationHash());
@@ -78,4 +80,5 @@ public class AddReviewCommentUI {
         dialog.pack();
         dialog.setVisible(true);
     }
+
 }

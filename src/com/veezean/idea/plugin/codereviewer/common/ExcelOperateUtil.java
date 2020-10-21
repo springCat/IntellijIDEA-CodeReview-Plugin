@@ -58,6 +58,7 @@ public class ExcelOperateUtil {
 
                     model.setContent(row.getCell(8).getStringCellValue());
                     model.setDateTime(row.getCell(9).getStringCellValue());
+                    model.setCodeAuthor(row.getCell(10).getStringCellValue());
                     models.add(model);
                 } catch (Exception exx) {
                     exx.printStackTrace();
@@ -111,7 +112,7 @@ public class ExcelOperateUtil {
                 buildCell(sheetRow,cellStyle, 7, value.getLineRange());
                 buildCell(sheetRow,cellStyle, 8, value.getContent());
                 buildCell(sheetRow,cellStyle, 9, value.getDateTime());
-                buildCell(sheetRow,cellStyle, 10, "");
+                buildCell(sheetRow,cellStyle, 10, value.getCodeAuthor());
                 buildCell(sheetRow,cellStyle, 11, "");
                 buildCell(sheetRow,cellStyle, 12, "");
                 buildCell(sheetRow,cellStyle, 13, "");

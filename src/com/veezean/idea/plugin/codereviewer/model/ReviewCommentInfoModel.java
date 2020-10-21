@@ -30,6 +30,8 @@ public class ReviewCommentInfoModel implements Serializable {
 
     private String dateTime;
 
+    private String codeAuthor;
+
     public ReviewCommentInfoModel() {
     }
 
@@ -107,6 +109,14 @@ public class ReviewCommentInfoModel implements Serializable {
         this.dateTime = dateTime;
     }
 
+    public String getCodeAuthor() {
+        return codeAuthor;
+    }
+
+    public void setCodeAuthor(String codeAuthor) {
+        this.codeAuthor = codeAuthor;
+    }
+
     public String getLineRange() {
         if (lineRange == null) {
             int start = startLine + 1;
@@ -154,6 +164,7 @@ public class ReviewCommentInfoModel implements Serializable {
                 ", severity='" + severity + '\'' +
                 ", factor='" + factor + '\'' +
                 ", dateTime='" + dateTime + '\'' +
+                ", codeAuthor='" + codeAuthor + '\'' +
                 '}';
     }
 }
